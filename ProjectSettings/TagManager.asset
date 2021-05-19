@@ -3,9 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
+<<<<<<< HEAD
   tags:
   - pin
   - ball
+=======
+  tags: []
+>>>>>>> parent of 635ce9c (Drawer and Lever Interaction)
   layers:
   - Default
   - TransparentFX
@@ -18,7 +22,7 @@ TagManager:
   - Grab
   - Ground
   - Body
-  - Grab Ignore Ray
+  - 
   - 
   - 
   - 
