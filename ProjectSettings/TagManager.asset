@@ -5,7 +5,6 @@ TagManager:
   serializedVersion: 2
   tags:
   - pin
-  - ball
   layers:
   - Default
   - TransparentFX
