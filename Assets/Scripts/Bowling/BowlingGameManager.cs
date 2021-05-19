@@ -10,9 +10,12 @@ public class BowlingGameManager : MonoBehaviour
     //public Button resetButton;
     public GameObject[] pinSet;
 
+
+   
+
     private Dictionary<GameObject, Transform> pinLocations;
     private Vector3[] defaultPos;
-    private Vector3[] defaultScale;
+   // private Vector3[] defaultScale;
     private Quaternion[] defaultRot;
     private Transform[] pins;
     void Start()
@@ -24,7 +27,7 @@ public class BowlingGameManager : MonoBehaviour
     private void StorePinLocations() {
         //Create pos, scale and rot, Transform array size based on sixe of Objects found
         defaultPos = new Vector3[pinSet.Length];
-        defaultScale = new Vector3[pinSet.Length];
+       // defaultScale = new Vector3[pinSet.Length];
         defaultRot = new Quaternion[pinSet.Length];
         pins = new Transform[pinSet.Length];
 
@@ -43,13 +46,13 @@ public class BowlingGameManager : MonoBehaviour
            // pins[i] = pinSet[i].GetComponent<Transform>();
             // find the Vector3 of the Gameobject
             defaultPos[i] = pinSet[i].transform.position;
-            defaultScale[i] = pinSet[i].transform.localScale;
+           // defaultScale[i] = pinSet[i].transform.localScale;
             defaultRot[i] = pinSet[i].transform.rotation;
         }
     }
 
 
-    void ResetGame()
+     public void ResetGame()
     {
         // put  all pins back in their original postion
         // ButtonInstance.onClick.AddListener(() => ResetGame());
@@ -57,7 +60,7 @@ public class BowlingGameManager : MonoBehaviour
         for (int i = 0; i < pinSet.Length; i++)
         {
             pinSet[i].transform.position = defaultPos[i];
-            pinSet[i].transform.localScale = defaultScale[i];
+          //  pinSet[i].transform.localScale = defaultScale[i];
             pinSet[i].transform.rotation = defaultRot[i];
         }
     }

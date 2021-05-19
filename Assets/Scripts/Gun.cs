@@ -7,6 +7,7 @@ public class Gun : MonoBehaviour
     public float speed = 35;
 public GameObject bullet; //small sphere
 public Transform barrel;
+   
 
 
 public AudioSource audioSource;
@@ -15,6 +16,7 @@ public AudioClip audioClip;
   public void Fire(){
    // GameObject spawnedBullet = Instantiate(bullet, barrel.position, barrel.rotation * Quaternion.Euler(90,0,0));
 
+        // z is forward
    GameObject spawnedBullet = Instantiate(bullet, barrel.position, barrel.rotation); 
   // Debug.Log(barrel.position + ":" + barrel.rotation);
   
@@ -25,13 +27,10 @@ public AudioClip audioClip;
     //forcemode. acceleration; velocityChange-instant not continuous, doesn't take mass into consideration 
     audioSource.PlayOneShot(audioClip);
      Destroy(spawnedBullet, 4);
+       
   // 
 }
 
    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
