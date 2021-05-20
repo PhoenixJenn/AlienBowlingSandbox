@@ -14,6 +14,7 @@ public class BowlingGameManager : MonoBehaviour
     private Vector3[] defaultPos;
     //private Vector3[] defaultScale;
     private Quaternion[] defaultRot;
+    private Quaternion startingRotation = new Quaternion(0, 0, 0, 1);
     private Transform[] pins;
     private bool gameOver = true;
     void Start()
@@ -24,8 +25,9 @@ public class BowlingGameManager : MonoBehaviour
 
     private void StorePinLocations() {
         //Create pos, scale and rot, Transform array size based on sixe of Objects found
+        // defaultScale = new Vector3[pinSet.Length];
+
         defaultPos = new Vector3[pinSet.Length];
-       // defaultScale = new Vector3[pinSet.Length];
         defaultRot = new Quaternion[pinSet.Length];
         pins = new Transform[pinSet.Length];
 
@@ -34,7 +36,7 @@ public class BowlingGameManager : MonoBehaviour
         foreach (GameObject pin in pinSet)
         {
           //  pinLocations.Add(pin, pin.transform);
-            Debug.Log(pin.name + ":" + pin.transform.position);
+            Debug.Log(pin.name + ":" + pin.transform.localPosition);
           //  pin.transform.position = pinLocations[pin].position;
         }
         //Get original the pos, scale and rot of each Object on the transform
@@ -43,7 +45,7 @@ public class BowlingGameManager : MonoBehaviour
         {
            // pins[i] = pinSet[i].GetComponent<Transform>();
             // find the Vector3 of the Gameobject
-            defaultPos[i] = pinSet[i].transform.position; // can also use position.x, position.y, position.z
+            defaultPos[i] = pinSet[i].transform.localPosition; // can also use position.x, position.y, position.z
             //defaultScale[i] = pinSet[i].transform.localScale;
             defaultRot[i] = pinSet[i].transform.rotation;
         }
@@ -56,7 +58,11 @@ public class BowlingGameManager : MonoBehaviour
         // ButtonInstance.onClick.AddListener(() => ResetGame());
         //Restore the all the original pos, scale and rot  of each GameOBject
         if (gameOver == true) {
-            Vector3 tempVector3 = new Vector3(0, 0, 0);
+            GameObject ball;
+            ball = GameObject.Find("BowlingBall3");
+
+            Vector3 tempVector3 = new Vector3(-0.152f, 0, -.117f);
+
             for (int i = 0; i < pinSet.Length; i++)
             {
                 pinSet[i].SetActive(false);
@@ -68,10 +74,22 @@ public class BowlingGameManager : MonoBehaviour
             }
             for (int i = 0; i < pinSet.Length; i++)
             {
-                Debug.Log("Reset " + pinSet[i].gameObject.name + " at " + defaultPos[i]);
-                
-                pinSet[i].transform.position = defaultPos[i];
-                pinSet[i].transform.rotation = defaultRot[i];
+                pinSet[i].SetActive(true);
+
+                //Debug.Log("Reset " + pinSet[i].gameObject.name + " at " + defaultPos[i]);
+                Debug.Log("Reset " + pinSet[i].gameObject.name + " at " + defaultRot[i]);
+                if (i == 1) {   
+                    // ball.transform.localPosition = defaultPos[i];
+                   // Debug.Log("Reset " + pinSet[i].gameObject.name + " at " + defaultPos[i]);
+                    pinSet[i].transform.position = tempVector3;
+                } else
+                {
+                    pinSet[i].transform.position = defaultPos[i]; // this works but puts int in the wrong place
+                                                                  // pinSet[i].transform.rotation = defaultRot[i];
+                    pinSet[i].transform.rotation = startingRotation;
+                }
+
+               
                 //pinSet[i].SetActive(true);
 
 
