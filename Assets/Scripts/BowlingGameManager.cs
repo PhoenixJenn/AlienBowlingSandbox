@@ -43,10 +43,11 @@ public class BowlingGameManager : MonoBehaviour
 
         for (int i = 0; i < pinSet.Length; i++)
         {
-           // pins[i] = pinSet[i].GetComponent<Transform>();
+            // pins[i] = pinSet[i].GetComponent<Transform>();
             // find the Vector3 of the Gameobject
-            defaultPos[i] = pinSet[i].transform.localPosition; // can also use position.x, position.y, position.z
+            //defaultPos[i] = pinSet[i].transform.localPosition; // can also use position.x, position.y, position.z
             //defaultScale[i] = pinSet[i].transform.localScale;
+            defaultPos[i] = pinSet[i].transform.position;
             defaultRot[i] = pinSet[i].transform.rotation;
         }
     }
